@@ -17,6 +17,7 @@ typedef struct 	s_function {
 }				t_function;
 
 void minishell(char **env);
+void testDir(char *args, char** dir);
 void printPath (t_env *env);
 void freeStructEnv (t_env **struct_env);
 void getHome (char *string, t_env *env);

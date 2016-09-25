@@ -76,7 +76,7 @@ bool testLibFunction (t_function *data, t_env *env)
 
 bool findLibFunction (t_function *data, t_env *env)
 {
-	struct stat *buf = malloc(sizeof(*buf));;
+	struct stat *buf = malloc(sizeof(*buf));
 	if (buf == NULL)
 		return NULL;
 	if(stat(data->name, buf) == 0) {
@@ -84,10 +84,14 @@ bool findLibFunction (t_function *data, t_env *env)
 		free(buf);
 		return true;
 	}
-	else if (env->paths == NULL || env->paths[0] == '\0')
+	else if (env->paths == NULL || env->paths[0] == '\0'){
+		free(buf);
 		return noPathFunction(data, env);
-	else 
+	}
+	else {
+		free(buf);
 		return testLibFunction(data, env);
+	}
 	free(buf);
 	return false;	
 }

@@ -51,42 +51,26 @@ char *getNewDir (char *args, t_env*env)
 	}
 	return new_dir;
 }
-/*
-char *isDir2 (char *args, t_env *env)
-{	
+
+void testDir(char *args, char** dir)
+{
+	char *next_dir = *dir;
 	int temp_size = 0;
-	char *next_dir = malloc(sizeof(*next_dir) * (strlen(env->current_directory) + 1)); // +1: Null byte
-	next_dir = strcpy(next_dir, env->current_directory);
-	DIR *dir = NULL;
-	next_dir = addSeparator(next_dir);
-	next_dir[strlen(next_dir)] = '\0';
-	if ((strcmp(args, "..") == 0) && args[0] == '.' && args[1] == '.') {
-		next_dir = previousDir(next_dir);
-		return next_dir;
-	}
 	if (args[0] == '/')
-		args = args + 1;
-	if (args == NULL)
-		temp_size = strlen(next_dir);
-	else
-		temp_size = strlen(next_dir) + strlen(args);
-	//next_dir = realloc (next_dir, sizeof(*next_dir) * (temp_size + 1)); // +1: Null byte
-	char *temp_dir = malloc(sizeof(*next_dir) * (temp_size + 1));
-	temp_dir = strcpy (temp_dir, next_dir);
-	free (next_dir);
-	next_dir = temp_dir;
-		if (next_dir == NULL){
-		printf("error realloc isDir\n");
-		return NULL;
-	}
-	if (args != NULL)
-		strcat (next_dir, args);
-	next_dir[temp_size] = '\0';
-	next_dir = eraseDots (next_dir);
-	if (strcmp(next_dir, "/") != 0) {
-		if(isDir(next_dir))
-			return next_dir;
-	}
-	return NULL;
+			args = args + 1;
+		if (args == NULL)
+			temp_size = strlen(next_dir);
+		else
+			temp_size = strlen(next_dir) + strlen(args);
+		next_dir = realloc (next_dir, sizeof(*next_dir) * (temp_size + 1)); // +1: Null byte
+		if (next_dir == NULL)
+			return;
+		if (args != NULL)
+			strcat (next_dir, args);
+		next_dir[temp_size] = '\0';
+		next_dir = eraseDots (next_dir);
+		if(isDir(next_dir) == false){
+			free(next_dir);
+			next_dir = NULL;
+		}
 }
-*/

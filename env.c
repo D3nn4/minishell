@@ -48,12 +48,12 @@ void getCurrent (char *string, t_env *env)
 {
 	int i;
 	int lenght = 0;
-	for (i = 5; string[i] ; i++)
+	for (i = 4; string[i] ; i++)
 		lenght++;
 	env->current_directory = malloc(sizeof(*env->current_directory) * lenght + 1);
 	if (env->current_directory == NULL)
 		return;
-	env->current_directory = strcpy (env->current_directory, string + 5);
+	env->current_directory = strcpy (env->current_directory, string + 4);
 }
 
 void createEnv (t_env **struct_env)

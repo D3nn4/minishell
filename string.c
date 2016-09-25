@@ -60,8 +60,7 @@ char *eraseDots (char *str)
 		}
 		strncat (new_str, str + i, 1);
 	}
-	new_str[strlen(new_str)] = '\0';
-	//strncat (new_str, str + i, 1);
+	strncat (new_str, str + i, 1);
 	free (str);
 	return new_str;
 }
