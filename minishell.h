@@ -17,7 +17,6 @@ typedef struct 	s_function {
 }				t_function;
 
 void minishell(char **env);
-void testDir(char *args, char** dir);
 void printPath (t_env *env);
 void freeStructEnv (t_env **struct_env);
 void getHome (char *string, t_env *env);
@@ -32,6 +31,7 @@ void modifyVar (t_env *env, char *var, char *value);
 void myUnsetenv (char *data, t_env *env);
 void deleteVar (t_env *env, char *var);
 void noArgCd (t_env *env);
+char *createNextDir (t_env *env);
 char *cdOldPwd (char **env);
 char *getNewDir (char *args, t_env*env);
 char *addSeparator (char *string);

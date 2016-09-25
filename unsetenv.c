@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "minishell.h"
 
-char **getListVar (char *data)   // 27/25/////////////////////////////
+char **getListVar (char *data)  
 {
 	int i;
 	int j = 0;
@@ -23,11 +23,7 @@ char **getListVar (char *data)   // 27/25/////////////////////////////
 		}
 		if (data[j] == ' ')
 			j++;
-		list_var[i] = malloc (sizeof(**list_var) * (size + 1)); // +1 => \0
-		if (list_var[i] == NULL) 
-			return NULL;
-		list_var[i] = strncpy (list_var[i], data + curseur, size);
-		list_var[i][size] = '\0';
+		list_var[i] = strndup(data + curseur, size);
 	}
 	list_var[arg_nb] = NULL;
 	return list_var;
