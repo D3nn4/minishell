@@ -12,8 +12,7 @@ int sizeToMalloc (char *str)
 				i++;
 			if(str[i+1] != '\0')
 				nb++;
-		}
-		
+		}	
 	}
 	return nb;
 }

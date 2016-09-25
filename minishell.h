@@ -13,7 +13,6 @@ typedef struct  s_env {
 typedef struct 	s_function {
 	char *name;
 	char *args;
-
 }				t_function;
 
 void minishell(char **env);
@@ -61,8 +60,5 @@ t_env *getEnv (char **env);
 
 int getSizeVar (char *buffer);
 int sizeToMalloc (char *str);
-
-
-
 
 #endif
