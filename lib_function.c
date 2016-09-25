@@ -18,10 +18,14 @@ bool applyLibFunction (char *path_to_test, t_function *data, t_env *env)
 			return_value = WEXITSTATUS(status_wait);
 	}
 	if (father == 0){
-		///////////////////////////
 		return_value = execve (path_to_test, args, env->raw_env);
 		exit(return_value);
 	}
+	int i;
+	for (i = 0; args[i] != NULL; i++){
+		free(args[i]);
+	}
+	free(args);
 	if (return_value == 0)
 		return true;
 	return false;

@@ -31,6 +31,7 @@ void modifyVar (t_env *env, char *var, char *value);
 void myUnsetenv (char *data, t_env *env);
 void deleteVar (t_env *env, char *var);
 void noArgCd (t_env *env);
+
 char *createNextDir (t_env *env);
 char *cdOldPwd (char **env);
 char *getNewDir (char *args, t_env*env);
@@ -40,10 +41,12 @@ char * previousDir (char *str);
 char *addPath (char *name, char *path);
 char *cdAbsolute(char *args);
 char *cdRelatif (char *args, t_env *env);
+
 char **getPaths (char *string);
 char **getListVar (char *data);
 char **copy2D (char **env);
 char **getArgsExecve(t_function *data);
+
 bool isDir (char *args);
 bool checkVar (char **list, char *var);
 bool applyLibFunction (char *path_to_test, t_function *data, t_env *env);
@@ -52,8 +55,10 @@ bool testLibFunction (t_function *data, t_env *env);
 bool applyFunction (char *buffer, int ret, t_env *env);
 bool FindBuiltInFunction (t_function *data, t_env *env);
 bool findLibFunction (t_function *data, t_env *env);
+
 t_function *getFunction (char *buffer);
 t_env *getEnv (char **env);
+
 int getSizeVar (char *buffer);
 int sizeToMalloc (char *str);
 
