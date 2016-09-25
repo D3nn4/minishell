@@ -3,6 +3,20 @@
 #include <stdlib.h>
 #include "minishell.h"
 
+int getSizeVar (char *buffer)
+{
+	int i = 0;	
+	while (buffer[i] != '\0'){
+		if (buffer[i] == ' ' || buffer[i] == '\t'){
+			i++;
+			break;
+		}
+		i++;
+	}
+	if (buffer[i] == '\0' && buffer[i - 1] != '\n')
+		i++;
+	return i;
+}
 
 char *addSeparator (char *string)
 {

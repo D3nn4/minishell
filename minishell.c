@@ -4,48 +4,42 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "minishell.h"
-
-int getSizeVar (char *buffer)
+char *getFunctionName (t_function *data, char *buffer, int i)
 {
-	int i = 0;
-	while (buffer[i] != '\0'){
-		if (buffer[i] == ' ' || buffer[i] == '\t'){
-			i++;
-			break;
-		}
-		i++;
-	}
-	if (buffer[i] == '\0' && buffer[i - 1] != '\n')
-		i++;
-	return i;
+	data->name = malloc(sizeof(*data->name) * (i + 1));
+	if (data->name == NULL)
+		return NULL;
+	data->name = strncpy(data->name, buffer, i - 1);
+	data->name[i - 1] = '\0';	
+	return data->name;
 }
 
 t_function *getFunction (char *buffer)
-{
-	int i = getSizeVar(buffer);	
-	if (i ==0)
+{	
+	int curseur = 0;
+	while (buffer[curseur] == ' ' || buffer[curseur] == '\t')
+		curseur++;
+	int i = getSizeVar(buffer + curseur);	
+	if (i == 0)
 		return NULL;
-		t_function *data = malloc(sizeof(*data));
-		if (data == NULL)
+	t_function *data = malloc(sizeof(*data));
+	if (data == NULL)
+		return NULL;
+	data->name = getFunctionName(data, buffer + curseur, i);
+	i = i + curseur;
+	while (buffer[i] == ' ' || buffer[i] == '\t')
+		i++;
+	if (buffer[i] == '\0' || buffer[i] == '\n')
+		data->args = NULL;
+	else {
+		data->args = malloc (sizeof(*data->args) * strlen(buffer + i) + 1 );
+		if (data->args == NULL)
 			return NULL;
-		data->name = malloc(sizeof(*data->name) * (i + 1));
-		if (data->name == NULL)
-			return NULL;
-		data->name = strncpy(data->name, buffer, i - 1);
-		data->name[i - 1] = '\0';	
-		while (buffer[i] == ' ' || buffer[i] == '\t')
-			i++;
-		if (buffer[i] == '\0' || buffer[i] == '\n')
-			data->args = NULL;
-		else {
-			data->args = malloc (sizeof(*data->args) * strlen(buffer + i) + 1 );
-			if (data->args == NULL)
-				return NULL;
-			data->args = strcpy(data->args, buffer + i);
-			const int end_of_args = strlen (data->args);
-			if (end_of_args > 1 && data->args[end_of_args - 1] == '\n')
-				data->args[end_of_args - 1] = '\0';
-		}
+		data->args = strcpy(data->args, buffer + i);
+		const int end_of_args = strlen (data->args);
+		if (end_of_args > 1 && data->args[end_of_args - 1] == '\n')
+			data->args[end_of_args - 1] = '\0';
+	}
 	return data;
 }
 
