@@ -9,6 +9,7 @@ bool applyLibFunction (char *path_to_test, t_function *data, t_env *env)
 {
 	int return_value = 0;
 	int status_wait;
+	char **args = getArgsExecve(data);
 	pid_t father;
 	father = fork();
 	if (father > 0){
@@ -17,14 +18,8 @@ bool applyLibFunction (char *path_to_test, t_function *data, t_env *env)
 			return_value = WEXITSTATUS(status_wait);
 	}
 	if (father == 0){
-		if (data->args == NULL){
-			char *argv[2] = {"ls", NULL};
-			return_value = execve (path_to_test, argv, env->raw_env);
-		}
-		else{
-			char *argv[3] = {"ls", data->args, NULL};
-			return_value = execve (path_to_test, argv, env->raw_env);
-		}
+		///////////////////////////
+		return_value = execve (path_to_test, args, env->raw_env);
 		exit(return_value);
 	}
 	if (return_value == 0)

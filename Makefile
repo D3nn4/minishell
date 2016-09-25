@@ -1,7 +1,7 @@
 NAME = minishell
 
 SRC = minishell.c main.c echo.c env.c struct.c cd.c lib_function.c setenv.c \
-	  unsetenv.c path.c string.c dir.c
+	  unsetenv.c path.c string.c dir.c execve.c
 
 HEADER = .
 

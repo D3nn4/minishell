@@ -43,6 +43,7 @@ char *cdRelatif (char *args, t_env *env);
 char **getPaths (char *string);
 char **getListVar (char *data);
 char **copy2D (char **env);
+char **getArgsExecve(t_function *data);
 bool isDir (char *args);
 bool checkVar (char **list, char *var);
 bool applyLibFunction (char *path_to_test, t_function *data, t_env *env);
@@ -54,6 +55,7 @@ bool findLibFunction (t_function *data, t_env *env);
 t_function *getFunction (char *buffer);
 t_env *getEnv (char **env);
 int getSizeVar (char *buffer);
+int sizeToMalloc (char *str);
 
 
 
